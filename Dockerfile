@@ -1,6 +1,6 @@
 ARG NODEJS_VERSION="12"
 
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-node:${NODEJS_VERSION}-buster-run
+FROM balenalib/amd64-debian-node:${NODEJS_VERSION}-buster-run
 
 # install required packages
 RUN install_packages \
@@ -49,8 +49,8 @@ RUN usermod -a -G audio,video,tty chromium
 RUN ln -s /usr/bin/chromium /usr/bin/chromium-browser || true
 
 # Set up the audio block. This won't have any effect if the audio block is not being used.
-RUN curl -skL https://raw.githubusercontent.com/balena-labs-projects/audio/master/scripts/alsa-bridge/debian-setup.sh| sh
-ENV PULSE_SERVER=tcp:audio:4317
+#RUN curl -skL https://raw.githubusercontent.com/balena-labs-projects/audio/master/scripts/alsa-bridge/debian-setup.sh| sh
+#ENV PULSE_SERVER=tcp:audio:4317
 
 COPY VERSION .
 
